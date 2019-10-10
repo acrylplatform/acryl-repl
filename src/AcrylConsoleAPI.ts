@@ -1,24 +1,24 @@
-import * as wt from '@waves/waves-transactions';
-import { libs, TTx, TTxParams, TSeedTypes } from '@waves/waves-transactions/';
+import * as wt from '@acryl/acryl-transactions';
+import { libs, TTx, TTxParams, TSeedTypes } from '@acryl/acryl-transactions';
 import { compile as cmpl } from '@waves/ride-js';
 
 const {keyPair, address, stringToBytes, signBytes} = wt.libs.crypto;
 
 
-export class WavesConsoleAPI {
+export class AcrylConsoleAPI {
     static env: any;
 
     [key: string]: any;
 
     private static injectEnv = <T extends (pp: any, ...args: any) => any>(f: T) => (po: TTxParams, seed?: TSeedTypes | null): ReturnType<typeof f> =>
-        f({chainId: WavesConsoleAPI.env.CHAIN_ID, ...po}, seed === null ? null : seed || WavesConsoleAPI.env.SEED);
+        f({chainId: AcrylConsoleAPI.env.CHAIN_ID, ...po}, seed === null ? null : seed || AcrylConsoleAPI.env.SEED);
 
     public static setEnv(env: any) {
-        WavesConsoleAPI.env = env;
+        AcrylConsoleAPI.env = env;
     }
 
     private currentAddress() {
-        return libs.crypto.address(WavesConsoleAPI.env.SEED, WavesConsoleAPI.env.CHAIN_ID);
+        return libs.crypto.address(AcrylConsoleAPI.env.SEED, AcrylConsoleAPI.env.CHAIN_ID);
     }
 
     private bufferToBase64(buf: Uint8Array) {
@@ -26,73 +26,73 @@ export class WavesConsoleAPI {
         return btoa(binstr);
     }
 
-    public alias = WavesConsoleAPI.injectEnv(wt.alias);
+    public alias = AcrylConsoleAPI.injectEnv(wt.alias);
 
-    public burn = WavesConsoleAPI.injectEnv(wt.burn);
+    public burn = AcrylConsoleAPI.injectEnv(wt.burn);
 
-    public cancelLease = WavesConsoleAPI.injectEnv(wt.cancelLease);
+    public cancelLease = AcrylConsoleAPI.injectEnv(wt.cancelLease);
 
-    public cancelOrder = WavesConsoleAPI.injectEnv(wt.cancelOrder);
+    public cancelOrder = AcrylConsoleAPI.injectEnv(wt.cancelOrder);
 
-    public data = WavesConsoleAPI.injectEnv(wt.data);
+    public data = AcrylConsoleAPI.injectEnv(wt.data);
 
-    public issue = WavesConsoleAPI.injectEnv(wt.issue);
+    public issue = AcrylConsoleAPI.injectEnv(wt.issue);
 
-    public reissue = WavesConsoleAPI.injectEnv(wt.reissue);
+    public reissue = AcrylConsoleAPI.injectEnv(wt.reissue);
 
-    public lease = WavesConsoleAPI.injectEnv(wt.lease);
+    public lease = AcrylConsoleAPI.injectEnv(wt.lease);
 
-    public massTransfer = WavesConsoleAPI.injectEnv(wt.massTransfer);
+    public massTransfer = AcrylConsoleAPI.injectEnv(wt.massTransfer);
 
-    public order = WavesConsoleAPI.injectEnv(wt.order);
+    public order = AcrylConsoleAPI.injectEnv(wt.order);
 
-    public transfer = WavesConsoleAPI.injectEnv(wt.transfer);
+    public transfer = AcrylConsoleAPI.injectEnv(wt.transfer);
 
-    public setScript = WavesConsoleAPI.injectEnv(wt.setScript);
+    public setScript = AcrylConsoleAPI.injectEnv(wt.setScript);
 
-    public setAssetScript = WavesConsoleAPI.injectEnv(wt.setAssetScript);
+    public setAssetScript = AcrylConsoleAPI.injectEnv(wt.setAssetScript);
 
-    public invokeScript = WavesConsoleAPI.injectEnv(wt.invokeScript);
+    public invokeScript = AcrylConsoleAPI.injectEnv(wt.invokeScript);
 
-    public sponsorship = WavesConsoleAPI.injectEnv(wt.sponsorship);
+    public sponsorship = AcrylConsoleAPI.injectEnv(wt.sponsorship);
 
-    public signTx = WavesConsoleAPI.injectEnv(wt.signTx);
+    public signTx = AcrylConsoleAPI.injectEnv(wt.signTx);
 
     public stringToUint8Array = stringToBytes;
 
-    public signBytes = (bytes: Uint8Array, seed?: string) => signBytes(bytes, seed || WavesConsoleAPI.env.SEED);
+    public signBytes = (bytes: Uint8Array, seed?: string) => signBytes(bytes, seed || AcrylConsoleAPI.env.SEED);
 
     public balance = (address?: string, apiBase?: string) =>
-        wt.nodeInteraction.balance(address || this.currentAddress(), apiBase || WavesConsoleAPI.env.API_BASE);
+        wt.nodeInteraction.balance(address || this.currentAddress(), apiBase || AcrylConsoleAPI.env.API_BASE);
 
     public assetBalance = async (assetId: string, address?: string, apiBase?: string) =>
-        wt.nodeInteraction.assetBalance(assetId, address || this.currentAddress(), apiBase || WavesConsoleAPI.env.API_BASE);
+        wt.nodeInteraction.assetBalance(assetId, address || this.currentAddress(), apiBase || AcrylConsoleAPI.env.API_BASE);
 
     public balanceDetails = async (address?: string, apiBase?: string) =>
-        wt.nodeInteraction.balanceDetails(address || this.currentAddress(), apiBase || WavesConsoleAPI.env.API_BASE);
+        wt.nodeInteraction.balanceDetails(address || this.currentAddress(), apiBase || AcrylConsoleAPI.env.API_BASE);
 
 
     public accountData = (address?: string, apiBase?: string) =>
-        wt.nodeInteraction.accountData(address || this.currentAddress(), apiBase || WavesConsoleAPI.env.API_BASE);
+        wt.nodeInteraction.accountData(address || this.currentAddress(), apiBase || AcrylConsoleAPI.env.API_BASE);
 
     public accountDataByKey = (key: string, address?: string, apiBase?: string) =>
-        wt.nodeInteraction.accountDataByKey(key, address || this.currentAddress(), apiBase || WavesConsoleAPI.env.API_BASE);
+        wt.nodeInteraction.accountDataByKey(key, address || this.currentAddress(), apiBase || AcrylConsoleAPI.env.API_BASE);
 
     public currentHeight = async (apiBase?: string) =>
-        wt.nodeInteraction.currentHeight(apiBase || WavesConsoleAPI.env.API_BASE);
+        wt.nodeInteraction.currentHeight(apiBase || AcrylConsoleAPI.env.API_BASE);
 
-    public broadcast = (tx: TTx, apiBase?: string) => wt.broadcast(tx, apiBase || WavesConsoleAPI.env.API_BASE);
+    public broadcast = (tx: TTx, apiBase?: string) => wt.broadcast(tx, apiBase || AcrylConsoleAPI.env.API_BASE);
 
     public file = (tabName?: string): string => {
-        if (typeof WavesConsoleAPI.env.file !== 'function') {
+        if (typeof AcrylConsoleAPI.env.file !== 'function') {
             throw new Error('File content API is not available. Please provide it to the console');
         }
-        return WavesConsoleAPI.env.file(tabName);
+        return AcrylConsoleAPI.env.file(tabName);
     };
 
     public contract = (): string => this.file();
 
-    public keyPair = (seed?: string) => keyPair(seed || WavesConsoleAPI.env.SEED);
+    public keyPair = (seed?: string) => keyPair(seed || AcrylConsoleAPI.env.SEED);
 
     public publicKey = (seed?: string): string =>
         this.keyPair(seed).publicKey;
@@ -101,8 +101,8 @@ export class WavesConsoleAPI {
         this.keyPair(seed).privateKey;
 
     public address = (seed?: string, chainId?: string) => address(
-        seed || WavesConsoleAPI.env.SEED,
-        chainId || WavesConsoleAPI.env.CHAIN_ID
+        seed || AcrylConsoleAPI.env.SEED,
+        chainId || AcrylConsoleAPI.env.CHAIN_ID
     );
 
     public compile = (code: string): string => {
@@ -154,7 +154,7 @@ export class WavesConsoleAPI {
         }
 
         // Compile help text from pieces
-        return WavesConsoleAPIHelp.compileText(aliases);
+        return AcrylConsoleAPIHelp.compileText(aliases);
     };
 
 }
@@ -162,9 +162,9 @@ export class WavesConsoleAPI {
 /**
  * Item for commands list
  *
- * @interface IWavesConsoleAPIHelpCommand
+ * @interface IAcrylConsoleAPIHelpCommand
  */
-export interface IWavesConsoleAPIHelpCommand {
+export interface IAcrylConsoleAPIHelpCommand {
     readonly summary?: string,
     readonly description?: string,
     readonly params?: Array<string> | null
@@ -173,9 +173,9 @@ export interface IWavesConsoleAPIHelpCommand {
 /**
  * Item for variables types list
  *
- * @interface IWavesConsoleAPIHelpVariable
+ * @interface IAcrylConsoleAPIHelpVariable
  */
-export interface IWavesConsoleAPIHelpVariable {
+export interface IAcrylConsoleAPIHelpVariable {
     readonly optional?: boolean,
     readonly type?: string,
     readonly summary?: string
@@ -184,9 +184,9 @@ export interface IWavesConsoleAPIHelpVariable {
 /**
  * Item for common texts pieces (headers, etc)
  *
- * @interface IWavesConsoleApiHelpCommon
+ * @interface IAcrylConsoleApiHelpCommon
  */
-export interface IWavesConsoleApiHelpCommon {
+export interface IAcrylConsoleApiHelpCommon {
     readonly header?: string,
     readonly summary?: string
 }
@@ -195,9 +195,9 @@ export interface IWavesConsoleApiHelpCommon {
  * Help parsers and text compilers
  *
  * @static
- * @class WavesConsoleAPIHelp
+ * @class AcrylConsoleAPIHelp
  */
-export class WavesConsoleAPIHelp {
+export class AcrylConsoleAPIHelp {
 
     /**
      * Common texts pieces
@@ -205,7 +205,7 @@ export class WavesConsoleAPIHelp {
      * @static
      * @member {object} common
      */
-    public static common: { [key: string]: IWavesConsoleApiHelpCommon } = {
+    public static common: { [key: string]: IAcrylConsoleApiHelpCommon } = {
         list: {
             header: 'Available functions:'
         },
@@ -220,7 +220,7 @@ export class WavesConsoleAPIHelp {
      * @static
      * @member {object} texts
      */
-    public static texts: { [key: string]: IWavesConsoleAPIHelpCommand } = {
+    public static texts: { [key: string]: IAcrylConsoleAPIHelpCommand } = {
         balance: {
             summary: '' +
                 'Retrieve information about acryl account balance',
@@ -495,7 +495,7 @@ export class WavesConsoleAPIHelp {
      * @static
      * @member {object} types
      */
-    public static types: { [key: string]: IWavesConsoleAPIHelpVariable } = {
+    public static types: { [key: string]: IAcrylConsoleAPIHelpVariable } = {
         tx: {
             summary: 'Transaction object obtained from AcrylTransactions library',
             type: 'object'
@@ -558,7 +558,7 @@ export class WavesConsoleAPIHelp {
     public static compileText(aliases: Array<string>): string {
         let
             last = aliases.length - 1,
-            module: any = WavesConsoleAPIHelp,
+            module: any = AcrylConsoleAPIHelp,
             full: boolean = aliases.length === 1,
             text: string = '';
 
@@ -600,7 +600,7 @@ export class WavesConsoleAPIHelp {
             last: number = args.length - 1,
             type: string = '',
             summary: string = '',
-            module: any = WavesConsoleAPIHelp;
+            module: any = AcrylConsoleAPIHelp;
 
         // Add arguments list header
         text = `${text}\n\n${module.common.args.header}`;
@@ -651,7 +651,7 @@ export class WavesConsoleAPIHelp {
      */
     public static compileTextSlice(alias: string, full: boolean, text: string): string {
         let
-            module: any = WavesConsoleAPIHelp,
+            module: any = AcrylConsoleAPIHelp,
             summary: string = '',
             params: Array<string> = module.texts[alias] && module.texts[alias].params ?
                 module.texts[alias].params :

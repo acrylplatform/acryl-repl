@@ -8,13 +8,13 @@ import { Input } from '../containers/Input';
 import run, { bindConsole, createContainer, getContainer } from '../lib/run';
 import internalCommands from '../lib/internal-commands';
 import { bindAPItoIFrame } from '../lib/contextBinding';
-import { WavesConsoleAPI } from '../../WavesConsoleAPI';
+import { AcrylConsoleAPI } from '../../AcrylConsoleAPI';
 
 // this is lame, but it's a list of key.code that do stuff in the input that we _want_.
 const doStuffKeys = /^(Digit|Key|Num|Period|Semi|Comma|Slash|IntlBackslash|Backspace|Delete|Enter)/;
 
 export interface IAppProps {
-    api: WavesConsoleAPI
+    api: AcrylConsoleAPI
     commands: any,
     layout: string
     theme: 'light' | 'dark',

@@ -7,8 +7,8 @@ import { App } from './core/containers/App';
 import { Console } from './core/components/Console';
 import './css/index.css';
 import './core/jsconsole.css';
-import { WavesConsoleAPI } from './WavesConsoleAPI';
-import WavesConsoleMethods from './WavesConsoleMethods';
+import { AcrylConsoleAPI } from './AcrylConsoleAPI';
+import AcrylConsoleMethods from './AcrylConsoleMethods';
 
 interface IReplProps {
     theme: string,
@@ -22,7 +22,7 @@ interface IReplProps {
 export class Repl extends React.Component<IReplProps> {
     private readonly store: any;
     private consoleRef: any;
-    public API: WavesConsoleAPI;
+    public API: AcrylConsoleAPI;
     public methods: any;
 
     static defaultProps: IReplProps = {
@@ -35,7 +35,7 @@ export class Repl extends React.Component<IReplProps> {
 
         this.store = configureStore();
 
-        this.API = new WavesConsoleAPI();
+        this.API = new AcrylConsoleAPI();
 
         if (props.theme) {
             this.store.dispatch(setTheme(props.theme));
@@ -47,7 +47,7 @@ export class Repl extends React.Component<IReplProps> {
     }
 
     componentDidMount() {
-        this.methods = new WavesConsoleMethods(this.consoleRef);
+        this.methods = new AcrylConsoleMethods(this.consoleRef);
     }
 
     shouldComponentUpdate(nextProps: IReplProps) {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {WavesConsoleAPIHelp} from '../../WavesConsoleAPI';
+import {AcrylConsoleAPIHelp} from '../../AcrylConsoleAPI';
 import {strsCommonPrefix} from '../utils'
 
 // TODO import Autocomplete from './Autocomplete';
@@ -40,9 +40,9 @@ export interface ISuggestItemProps {
 export class Input extends React.Component<IInputProps, IInputState> {
     private input?: HTMLTextAreaElement | null;
 
-    static commandsVocabulary = WavesConsoleAPIHelp.texts;
+    static commandsVocabulary = AcrylConsoleAPIHelp.texts;
 
-    static commandsList:Array<string> = Object.keys(WavesConsoleAPIHelp.texts);
+    static commandsList:Array<string> = Object.keys(AcrylConsoleAPIHelp.texts);
 
     static commasAndQuotes:{[key:string]:string} = {
         '(': ')',

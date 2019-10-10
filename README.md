@@ -20,7 +20,7 @@ const signedTx = transfer({amount: 100, recipient: '3MyAGEBuZGDKZDzYn6sbh2noqk9u
   "timestamp": 1542640481876,
   "proofs": [],
   "id": "CveeKH16XQcshV5GZP2RXppg3snxcKqRsM4wE5gxcuzc",
-  "chainId": "T",
+  "chainId": "K",
   "amount": 100,
   "recipient": "3MyAGEBuZGDKZDzYn6sbh2noqk9uYHy4kjw"
 }
@@ -94,7 +94,7 @@ class App extends React.Component {
         (global as any)['updateEnv']({
             SEED: 'abracadabra',
             API_BASE: 'https://nodestestnet.acrylplatform.com',
-            CHAIN_ID: 'T',
+            CHAIN_ID: 'K',
             file: () => 'Placeholder file content'
         });
 

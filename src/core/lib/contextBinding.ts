@@ -1,13 +1,13 @@
 import { getContainer } from './run';
-import { WavesConsoleAPI } from '../../WavesConsoleAPI';
-import { libs, TTx } from '@waves/waves-transactions/';
+import { AcrylConsoleAPI } from '../../AcrylConsoleAPI';
+import { libs, TTx } from '@acryl/acryl-transactions';
 import axios from 'axios';
 
 import { Console } from '..';
 
 export const updateIFrameEnv = (env: any) => {
     try {
-        WavesConsoleAPI.setEnv(env);
+        AcrylConsoleAPI.setEnv(env);
 
         const iframeWindow = getContainer().contentWindow;
 
@@ -17,7 +17,7 @@ export const updateIFrameEnv = (env: any) => {
     }
 };
 
-export const bindAPItoIFrame = (consoleApi: WavesConsoleAPI, console: Console, frame: any) => {
+export const bindAPItoIFrame = (consoleApi: AcrylConsoleAPI, console: Console, frame: any) => {
     const apiMethodWrappers: IApiMethodWrappers = getApiMethodWrappers(consoleApi, console);
 
     try {
@@ -49,10 +49,10 @@ const getNetworkByte = (apiBase: string) => {
         });
 };
 
-const getApiMethodWrappers = (consoleApi: WavesConsoleAPI, console: Console): IApiMethodWrappers => {
+const getApiMethodWrappers = (consoleApi: AcrylConsoleAPI, console: Console): IApiMethodWrappers => {
     return {
         broadcast: async (tx: TTx, apiBaseParam?: string) => {
-            const apiBase = new URL(apiBaseParam || WavesConsoleAPI.env.API_BASE).href;
+            const apiBase = new URL(apiBaseParam || AcrylConsoleAPI.env.API_BASE).href;
 
             const nodes = ['https://nodes.acrylplatform.com/', 'https://nodestestnet.acrylplatform.com/'];
 
@@ -67,7 +67,7 @@ const getApiMethodWrappers = (consoleApi: WavesConsoleAPI, console: Console): IA
             };
 
             const generateExplorerLinkToTx = (networkByte: string, txId: number) => {
-                return (networkByte === 'W')
+                return (networkByte === 'A')
                     ? `https://explorer.acrylplatform.com/tx/${txId}`
                     : `https://explorertestnet.acrylplatform.com/tx/${txId}`;
             };
@@ -77,8 +77,8 @@ const getApiMethodWrappers = (consoleApi: WavesConsoleAPI, console: Console): IA
 
             if (nodes.includes(apiBase)) {
                 const networkByte = apiBase === 'https://nodes.acrylplatform.com/'
-                    ? 'W'
-                    : 'T';
+                    ? 'A'
+                    : 'K';
 
                 const href = generateExplorerLinkToTx(networkByte, res.id);
 
@@ -87,9 +87,9 @@ const getApiMethodWrappers = (consoleApi: WavesConsoleAPI, console: Console): IA
                 try {
                     let networkByte = await getNetworkByte(apiBase);
 
-                    const isWavesNetwork = networkByte === 'W' || networkByte === 'T';
+                    const isAcrylNetwork = networkByte === 'A' || networkByte === 'K';
 
-                    if (isWavesNetwork) {
+                    if (isAcrylNetwork) {
                         const href = generateExplorerLinkToTx(networkByte, res.id);
 
                         pushExplorerLinkToConsole(href);

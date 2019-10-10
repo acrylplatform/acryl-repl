@@ -16,7 +16,7 @@ class App extends React.Component {
         (global as any)['updateEnv']({
             SEED: 'abracadabra',
             API_BASE: 'https://nodestestnet.acrylplatform.com',
-            CHAIN_ID: 'T',
+            CHAIN_ID: 'K',
             file: () => 'Placeholder file content'
         });
 

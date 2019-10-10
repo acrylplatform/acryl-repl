@@ -11,7 +11,7 @@ const methods = [
     'clear'
 ];
 
-class WavesConsoleMethods {
+class AcrylConsoleMethods {
     [key: string]: any;
 
     constructor(console: any) {
@@ -21,4 +21,4 @@ class WavesConsoleMethods {
     }
 }
 
-export default WavesConsoleMethods;
+export default AcrylConsoleMethods;
