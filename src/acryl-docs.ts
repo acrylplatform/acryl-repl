@@ -1,4 +1,4 @@
-export const wavesDocs = `
+export const acrylDocs = `
 
 /**
  * Creates signed issue transaction.
@@ -115,7 +115,7 @@ declare function burn(txParams: {
  */
 declare function transfer(txParams: {
   /** 
-   * Amount to transfer in minimal units. E.x. for waves 100000000 equals 1.0 Waves
+   * Amount to transfer in minimal units. E.x. for acryl 100000000 equals 1.0 Acryl
    */
   amount: number,
   /** 
@@ -123,7 +123,7 @@ declare function transfer(txParams: {
    */
   recipient: string,
   /** 
-   *  Asset Id to transfer, in case you want to transfer WAVES use default, default: ''
+   *  Asset Id to transfer, in case you want to transfer ACRYL use default, default: ''
    */
   assetId?: string,
   /** 
@@ -131,9 +131,9 @@ declare function transfer(txParams: {
    */
   attachment?: string = '',
   /** 
-   * Asset Id to pay fee with, in case you want to pay fee with WAVES use default, default: ''
+   * Asset Id to pay fee with, in case you want to pay fee with ACRYL use default, default: ''
    */
-  feeAssetId?: string = 'WAVES',
+  feeAssetId?: string = 'ACRYL',
    /** 
    * Account public key from which this tx should be sent. Default to the one who signs tx
    */
@@ -235,9 +235,9 @@ declare function massTransfer(txParams: {
    */
   transfers: {recipient: string, amount:number}[],
   /** 
-   * Asset Id to transfer, in case you want to transfer WAVES use default, default: ''
+   * Asset Id to transfer, in case you want to transfer ACRYL use default, default: ''
    */
-  assetId: string = 'WAVES',
+  assetId: string = 'ACRYL',
   /** 
    * Account public key from which this tx should be sent. Default to the one who signs tx
    */
@@ -308,7 +308,7 @@ declare function data(txParams: {
 
 
 /**
- * Sends transaction to the Waves network using env.API_BASE endpoint.
+ * Sends transaction to the Acryl network using env.API_BASE endpoint.
  * @param {any} tx - Transaction to send to the network.
  */
 declare function broadcast(tx: any)

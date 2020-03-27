@@ -1,6 +1,6 @@
 import * as wt from '@acryl/acryl-transactions';
 import { libs, TTx, TTxParams, TSeedTypes } from '@acryl/acryl-transactions';
-import { compile as cmpl } from '@waves/ride-js';
+import { compile as cmpl } from '@acryl/ride-js';
 
 const {keyPair, address, stringToBytes, signBytes} = wt.libs.crypto;
 

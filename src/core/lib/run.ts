@@ -37,7 +37,7 @@ export function createContainer() {
     container.style.position = 'absolute';
     container.style.top = '-100px';
     container.setAttribute('name', '<proxy>');
-    // container.src = './waves-loaded.html';
+    // container.src = './acryl-loaded.html';
     document.body.appendChild(container);
     setContainer(container);
     return container;

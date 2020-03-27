@@ -1,1 +1,1 @@
-declare module '@waves/ride-js'
+declare module '@acryl/ride-js'
