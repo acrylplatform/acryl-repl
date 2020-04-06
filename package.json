@@ -1,6 +1,6 @@
 {
   "name": "@acryl/acryl-repl",
-  "version": "2.5.2",
+  "version": "2.5.3",
   "description": "Javascript console to interact with acryl blockchain. React component",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -23,7 +23,7 @@
     "@acryl/ride-js": "^1.0.1"
   },
   "dependencies": {
-    "@acryl/acryl-transactions": "^3.16.6",
+    "@acryl/acryl-transactions": "^3.16.8",
     "axios": "^0.19.0",
     "babylon": "^6.18.0",
     "babylon-walk": "^1.0.2",
